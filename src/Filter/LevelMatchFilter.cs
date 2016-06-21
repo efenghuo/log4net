@@ -132,9 +132,9 @@ namespace log4net.Filter
 			if (m_levelToMatch != null && m_levelToMatch == loggingEvent.Level) 
 			{
 				// Found match
-				return m_acceptOnMatch ? FilterDecision.Accept : FilterDecision.Deny;
+                return m_acceptOnMatch ? FilterDecision.Accept : FilterDecision.Neutral;
 			}
-			return FilterDecision.Neutral;
+			return FilterDecision.Deny;
 		}
 
 		#endregion

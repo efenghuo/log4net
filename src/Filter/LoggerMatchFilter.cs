@@ -139,19 +139,17 @@ namespace log4net.Filter
 			// Check if we have been setup to filter
 			if ((m_loggerToMatch != null && m_loggerToMatch.Length != 0) && 
 				loggingEvent.LoggerName.StartsWith(m_loggerToMatch))
-			{
-				// we've got a match
+			{                
 				if (m_acceptOnMatch) 
 				{
 					return FilterDecision.Accept;
-				} 
-				return FilterDecision.Deny;
+				}
+                //alow later filters to have a look.
+                return FilterDecision.Neutral;
 			}
 			else
 			{
-				// We cannot filter so allow the filter chain
-				// to continue processing
-				return FilterDecision.Neutral;
+				return FilterDecision.Deny;
 			}
 		}
 

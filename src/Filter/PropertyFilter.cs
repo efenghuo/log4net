@@ -130,32 +130,32 @@ namespace log4net.Filter
 				// Check the regex
 				if (m_regexToMatch.Match(msg).Success == false)
 				{
-					// No match, continue processing
-					return FilterDecision.Neutral;
+					// No match, deny
+					return FilterDecision.Deny;
 				} 
 
 				// we've got a match
 				if (m_acceptOnMatch) 
 				{
 					return FilterDecision.Accept;
-				} 
-				return FilterDecision.Deny;
+				}
+                return FilterDecision.Neutral;
 			}
 			else if (m_stringToMatch != null)
 			{
 				// Check substring match
 				if (msg.IndexOf(m_stringToMatch) == -1) 
 				{
-					// No match, continue processing
-					return FilterDecision.Neutral;
+					// No match, deny
+                    return FilterDecision.Deny;
 				} 
 
 				// we've got a match
 				if (m_acceptOnMatch) 
 				{
 					return FilterDecision.Accept;
-				} 
-				return FilterDecision.Deny;
+				}
+                return FilterDecision.Neutral;
 			}
 			return FilterDecision.Neutral;
 		}
